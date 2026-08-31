@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Membres
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Liste des membres</h2>
+
+    <p>
+        <a href="{% url 'bibliothecaire:creer_membre' %}">
+            Ajouter un membre
+        </a>
+    </p>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for membre in membres %}
+
+                <tr>
+
+                    <td>
+                        {{ membre.nom }}
+                    </td>
+
+                    <td>
+                        {{ membre.prenom }}
+                    </td>
+
+                    <td>
+                        {{ membre.email }}
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'bibliothecaire:modifier_membre' membre.id %}">
+                            Modifier
+                        </a>
+
+                        |
+
+                        <a href="{% url 'bibliothecaire:supprimer_membre' membre.id %}">
+                            Supprimer
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+                    <td colspan="4">
+                        Aucun membre enregistré.
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+{% endblock %}

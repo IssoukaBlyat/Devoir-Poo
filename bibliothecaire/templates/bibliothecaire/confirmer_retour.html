@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Retour d'un emprunt
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Retour d'un emprunt</h2>
+
+
+    <p>
+        Membre :
+        <strong>
+            {{ emprunt.membre.prenom }}
+            {{ emprunt.membre.nom }}
+        </strong>
+    </p>
+
+
+    <p>
+        Média :
+        <strong>
+            {{ emprunt.media.nom }}
+        </strong>
+    </p>
+
+
+    {% if erreur %}
+
+        <p>
+            {{ erreur }}
+        </p>
+
+    {% endif %}
+
+
+    <p>
+        Confirmer le retour de ce média ?
+    </p>
+
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Confirmer le retour
+        </button>
+
+    </form>
+
+
+    <p>
+        <a href="{% url 'bibliothecaire:liste_emprunts' %}">
+            Annuler
+        </a>
+    </p>
+
+{% endblock %}

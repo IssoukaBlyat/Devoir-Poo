@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Médiathèque
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Notre livre, notre média</h1>
+
+        <nav>
+
+            <a href="{% url 'membre:liste_medias' %}">
+                Catalogue
+            </a>
+
+            |
+
+            <a href="{% url 'bibliothecaire:tableau_bord' %}">
+                Espace bibliothécaire
+            </a>
+
+            |
+
+            {% if user.is_authenticated %}
+
+                Connecté :
+                {{ user.username }}
+
+                |
+
+                <form
+                    method="post"
+                    action="{% url 'logout' %}"
+                    style="display: inline;"
+                >
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Déconnexion
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <a href="{% url 'login' %}">
+                    Connexion
+                </a>
+
+            {% endif %}
+
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+</body>
+
+</html>

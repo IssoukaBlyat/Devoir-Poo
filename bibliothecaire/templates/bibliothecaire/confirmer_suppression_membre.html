@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Supprimer un membre
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Supprimer un membre</h2>
+
+    <p>
+        Voulez-vous vraiment supprimer
+        <strong>
+            {{ membre.prenom }}
+            {{ membre.nom }}
+        </strong>
+        ?
+    </p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Oui, supprimer
+        </button>
+
+    </form>
+
+    <p>
+        <a href="{% url 'bibliothecaire:liste_membres' %}">
+            Annuler
+        </a>
+    </p>
+
+{% endblock %}

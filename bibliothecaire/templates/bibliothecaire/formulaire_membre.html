@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    {{ titre }}
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>
+        {{ titre }}
+    </h2>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Enregistrer
+        </button>
+
+    </form>
+
+    <p>
+        <a href="{% url 'bibliothecaire:liste_membres' %}">
+            Retour à la liste
+        </a>
+    </p>
+
+{% endblock %}

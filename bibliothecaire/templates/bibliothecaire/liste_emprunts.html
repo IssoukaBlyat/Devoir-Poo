@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Gestion des emprunts
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Gestion des emprunts</h2>
+
+    <p>
+        <a href="{% url 'bibliothecaire:ajouter_emprunt' %}">
+            Créer un emprunt
+        </a>
+    </p>
+
+
+    <table border="1">
+
+        <thead>
+            <tr>
+                <th>Membre</th>
+                <th>Média</th>
+                <th>Date d'emprunt</th>
+                <th>Date limite</th>
+                <th>Date de retour</th>
+                <th>État</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            {% for emprunt in emprunts %}
+
+                <tr>
+
+                    <td>
+                        {{ emprunt.membre.prenom }}
+                        {{ emprunt.membre.nom }}
+                    </td>
+
+                    <td>
+                        {{ emprunt.media.nom }}
+                    </td>
+
+                    <td>
+                        {{ emprunt.date_emprunt }}
+                    </td>
+
+                    <td>
+                        {{ emprunt.date_echeance }}
+                    </td>
+
+                    <td>
+
+                        {% if emprunt.date_retour %}
+
+                            {{ emprunt.date_retour }}
+
+                        {% else %}
+
+                            Non retourné
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if emprunt.date_retour %}
+
+                            Terminé
+
+                        {% else %}
+
+                            En cours
+
+                        {% endif %}
+
+                    </td>
+
+
+                    <td>
+
+                        {% if not emprunt.date_retour %}
+
+                            <a href="{% url 'bibliothecaire:retour_emprunt' emprunt.id %}">
+                                Retourner
+                            </a>
+
+                        {% else %}
+
+                            -
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+            {% empty %}
+
+                <tr>
+
+                    <td colspan="7">
+                        Aucun emprunt enregistré.
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+    <p>
+        <a href="{% url 'bibliothecaire:tableau_bord' %}">
+            Retour au tableau de bord
+        </a>
+    </p>
+
+{% endblock %}

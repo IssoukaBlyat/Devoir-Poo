@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Gestion des médias
+{% endblock %}
+
+
+{% block content %}
+
+    <h2>Gestion des médias</h2>
+
+
+    <h3>Ajouter un média</h3>
+
+    <ul>
+        <li>
+            <a href="{% url 'bibliothecaire:ajouter_livre' %}">
+                Ajouter un livre
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'bibliothecaire:ajouter_dvd' %}">
+                Ajouter un DVD
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'bibliothecaire:ajouter_cd' %}">
+                Ajouter un CD
+            </a>
+        </li>
+
+        <li>
+            <a href="{% url 'bibliothecaire:ajouter_jeu' %}">
+                Ajouter un jeu de plateau
+            </a>
+        </li>
+    </ul>
+
+
+    <h3>Livres</h3>
+
+    <ul>
+        {% for livre in livres %}
+
+            <li>
+                {{ livre.nom }}
+                — {{ livre.auteur }}
+
+                {% if livre.disponible %}
+                    — Disponible
+                {% else %}
+                    — Indisponible
+                {% endif %}
+            </li>
+
+        {% empty %}
+
+            <li>Aucun livre.</li>
+
+        {% endfor %}
+    </ul>
+
+
+    <h3>DVD</h3>
+
+    <ul>
+        {% for dvd in dvds %}
+
+            <li>
+                {{ dvd.nom }}
+                — {{ dvd.realisateur }}
+
+                {% if dvd.disponible %}
+                    — Disponible
+                {% else %}
+                    — Indisponible
+                {% endif %}
+            </li>
+
+        {% empty %}
+
+            <li>Aucun DVD.</li>
+
+        {% endfor %}
+    </ul>
+
+
+    <h3>CD</h3>
+
+    <ul>
+        {% for cd in cds %}
+
+            <li>
+                {{ cd.nom }}
+                — {{ cd.artiste }}
+
+                {% if cd.disponible %}
+                    — Disponible
+                {% else %}
+                    — Indisponible
+                {% endif %}
+            </li>
+
+        {% empty %}
+
+            <li>Aucun CD.</li>
+
+        {% endfor %}
+    </ul>
+
+
+    <h3>Jeux de plateau</h3>
+
+    <ul>
+        {% for jeu in jeux %}
+
+            <li>
+                {{ jeu.nom }}
+                — {{ jeu.createur }}
+                — Consultation sur place
+            </li>
+
+        {% empty %}
+
+            <li>Aucun jeu de plateau.</li>
+
+        {% endfor %}
+    </ul>
+
+
+    <p>
+        <a href="{% url 'bibliothecaire:tableau_bord' %}">
+            Retour au tableau de bord
+        </a>
+    </p>
+
+{% endblock %}
