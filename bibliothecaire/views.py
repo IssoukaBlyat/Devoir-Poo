@@ -1,5 +1,7 @@
 import logging
 
+from django.db.models.deletion import ProtectedError
+
 from django.contrib.auth.decorators import user_passes_test
 
 from django.shortcuts import (
@@ -42,7 +44,10 @@ def est_bibliothecaire(user):
 @user_passes_test(est_bibliothecaire)
 def tableau_bord(request):
     nombre_membres = Membre.objects.count()
-    nombre_medias = Media.objects.count()
+    nombre_medias = (
+            Media.objects.count()
+            + JeuDePlateau.objects.count()
+    )
 
     return render(
         request,
@@ -143,23 +148,33 @@ def supprimer_membre(request, membre_id):
         id=membre_id,
     )
 
+    erreur = None
+
     if request.method == "POST":
-        logger.info(
-            "Suppression du membre : %s",
-            membre,
-        )
+        try:
+            logger.info(
+                "Suppression du membre : %s",
+                membre,
+            )
 
-        membre.delete()
+            membre.delete()
 
-        return redirect(
-            "bibliothecaire:liste_membres"
-        )
+            return redirect(
+                "bibliothecaire:liste_membres"
+            )
+
+        except ProtectedError:
+            erreur = (
+                "Impossible de supprimer ce membre "
+                "car il possède un historique d'emprunts."
+            )
 
     return render(
         request,
         "bibliothecaire/confirmer_suppression_membre.html",
         {
             "membre": membre,
+            "erreur": erreur,
         },
     )
 
@@ -337,8 +352,20 @@ def ajouter_emprunt(request):
                     "bibliothecaire:liste_emprunts"
                 )
 
+
             except ValidationError as exception:
+
                 erreur = exception.message
+
+                logger.warning(
+
+                    "Emprunt refusé pour %s : %s",
+
+                    membre,
+
+                    erreur,
+
+                )
 
     else:
         form = EmpruntForm()

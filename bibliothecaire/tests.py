@@ -6,10 +6,13 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from .forms import EmpruntForm
+
 from .models import (
     Emprunt,
     Livre,
     Membre,
+    JeuDePlateau,
 )
 from .services import creer_emprunt, retourner_emprunt
 
@@ -307,6 +310,24 @@ class EmpruntTests(BaseBibliothecaireTest):
                 self.membre,
                 nouveau_livre,
             )
+
+    def test_jeu_de_plateau_non_empruntable(self):
+        jeu = JeuDePlateau.objects.create(
+            nom="Catan",
+            createur="Klaus Teuber",
+        )
+
+        form = EmpruntForm()
+
+        medias = form.fields[
+            "media"
+        ].queryset
+
+        self.assertFalse(
+            medias.filter(
+                nom=jeu.nom
+            ).exists()
+        )
 
 class SecuriteTests(TestCase):
 
