@@ -11,7 +11,10 @@
     <h2>Liste des membres</h2>
 
     <p>
-        <a href="{% url 'bibliothecaire:creer_membre' %}">
+        <a
+            href="{% url 'bibliothecaire:creer_membre' %}"
+            class="bouton bouton-principal"
+        >
             Ajouter un membre
         </a>
     </p>
@@ -47,13 +50,19 @@
 
                     <td>
 
-                        <a href="{% url 'bibliothecaire:modifier_membre' membre.id %}">
+                        <a
+                            href="{% url 'bibliothecaire:modifier_membre' membre.id %}"
+                            class="bouton bouton-secondaire"
+                        >
                             Modifier
                         </a>
 
                         |
 
-                        <a href="{% url 'bibliothecaire:supprimer_membre' membre.id %}">
+                        <a
+                            href="{% url 'bibliothecaire:supprimer_membre' membre.id %}"
+                            class="bouton bouton-danger"
+                        >
                             Supprimer
                         </a>
 

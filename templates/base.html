@@ -1,7 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="fr">
 
 <head>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <meta charset="UTF-8">
     <title>
         {% block title %}
@@ -11,62 +14,78 @@
 </head>
 
 <body>
+        
+    <header class="header">
 
-    <header>
-        <h1>Notre livre, notre média</h1>
+        <div class="container">
 
-        <nav>
+            <h1>
+                Notre livre, notre média
+            </h1>
 
-            <a href="{% url 'membre:liste_medias' %}">
-                Catalogue
-            </a>
+            <nav class="navigation">
 
-            |
-
-            <a href="{% url 'bibliothecaire:tableau_bord' %}">
-                Espace bibliothécaire
-            </a>
-
-            |
-
-            {% if user.is_authenticated %}
-
-                Connecté :
-                {{ user.username }}
-
-                |
-
-                <form
-                    method="post"
-                    action="{% url 'logout' %}"
-                    style="display: inline;"
-                >
-
-                    {% csrf_token %}
-
-                    <button type="submit">
-                        Déconnexion
-                    </button>
-
-                </form>
-
-            {% else %}
-
-                <a href="{% url 'login' %}">
-                    Connexion
+                <a href="{% url 'membre:liste_medias' %}">
+                    Catalogue
                 </a>
 
-            {% endif %}
+                <a href="{% url 'bibliothecaire:tableau_bord' %}">
+                    Espace bibliothécaire
+                </a>
 
-        </nav>
+                {% if user.is_authenticated %}
+
+                    <span class="utilisateur">
+                        {{ user.username }}
+                    </span>
+
+                    <form
+                        method="post"
+                        action="{% url 'logout' %}"
+                        class="form-deconnexion"
+                    >
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="bouton bouton-secondaire"
+                        >
+                            Déconnexion
+                        </button>
+
+                    </form>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}">
+                        Connexion
+                    </a>
+
+                {% endif %}
+
+            </nav>
+
+        </div>
+
     </header>
 
-    <hr>
 
-    <main>
+    <main class="container contenu">
+
         {% block content %}
         {% endblock %}
+
     </main>
+
+
+    <footer class="footer">
+
+        <div class="container">
+            Médiathèque Django
+        </div>
+
+    </footer>
 
 </body>
 

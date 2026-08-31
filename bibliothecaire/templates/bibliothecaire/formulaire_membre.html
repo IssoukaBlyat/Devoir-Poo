@@ -18,14 +18,20 @@
 
         {{ form.as_p }}
 
-        <button type="submit">
+        <button
+            type="submit"
+            class="bouton bouton-principal"
+        >
             Enregistrer
         </button>
 
     </form>
 
     <p>
-        <a href="{% url 'bibliothecaire:liste_membres' %}">
+        <a
+            href="{% url 'bibliothecaire:liste_membres' %}"
+            class="bouton bouton-secondaire"
+        >
             Retour à la liste
         </a>
     </p>

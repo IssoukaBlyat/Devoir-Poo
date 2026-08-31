@@ -22,9 +22,17 @@
                 {{ media.nom }}
 
                 {% if media.disponible %}
-                    — Disponible
+
+                    <span class="disponible">
+                        Disponible
+                    </span>
+
                 {% else %}
-                    — Indisponible
+
+                    <span class="indisponible">
+                        Indisponible
+                    </span>
+
                 {% endif %}
 
             </li>

@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #222;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.header {
+    background-color: #2f4858;
+    color: white;
+    padding: 20px 0;
+}
+
+.header h1 {
+    margin: 0 0 15px 0;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.navigation a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navigation a:hover {
+    text-decoration: underline;
+}
+
+.utilisateur {
+    margin-left: auto;
+}
+
+.form-deconnexion {
+    display: inline;
+}
+
+.contenu {
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.footer {
+    background-color: #2f4858;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h2 {
+    margin-top: 0;
+    color: #2f4858;
+}
+
+h3 {
+    margin-top: 30px;
+    color: #385c6c;
+}
+
+.bouton {
+    display: inline-block;
+    padding: 9px 14px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bouton-principal {
+    background-color: #2f4858;
+    color: white;
+}
+
+.bouton-secondaire {
+    background-color: #dddddd;
+    color: #222;
+}
+
+.bouton-danger {
+    background-color: #b3261e;
+    color: white;
+}
+
+.bouton:hover {
+    opacity: 0.9;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th,
+td {
+    padding: 12px;
+    border: 1px solid #dddddd;
+    text-align: left;
+}
+
+th {
+    background-color: #2f4858;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+form p {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+select {
+    width: 100%;
+    max-width: 500px;
+    padding: 9px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+button {
+    font-family: inherit;
+}
+
+.disponible {
+    color: #1b7f3a;
+    font-weight: bold;
+}
+
+.indisponible {
+    color: #b3261e;
+    font-weight: bold;
+}
+
+.termine {
+    color: #555555;
+}
+
+.en-cours {
+    color: #a15c00;
+    font-weight: bold;
+}
