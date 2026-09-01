@@ -74,11 +74,15 @@
 
                         {% if emprunt.date_retour %}
 
-                            Terminé
+                            <span class="termine">
+                                Terminé
+                            </span>
 
                         {% else %}
 
-                            En cours
+                            <span class="en-cours">
+                                En cours
+                            </span>
 
                         {% endif %}
 
@@ -89,7 +93,10 @@
 
                         {% if not emprunt.date_retour %}
 
-                            <a href="{% url 'bibliothecaire:retour_emprunt' emprunt.id %}">
+                            <a
+                                href="{% url 'bibliothecaire:retour_emprunt' emprunt.id %}"
+                                class="bouton bouton-principal"
+                            >
                                 Retourner
                             </a>
 

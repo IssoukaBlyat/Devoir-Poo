@@ -167,3 +167,12 @@ button {
     color: #a15c00;
     font-weight: bold;
 }
+
+.erreur {
+    background-color: #fde7e7;
+    color: #8a1c1c;
+    border: 1px solid #e2aaaa;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}

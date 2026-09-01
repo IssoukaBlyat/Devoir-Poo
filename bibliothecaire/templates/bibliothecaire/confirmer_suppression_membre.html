@@ -20,23 +20,31 @@
     </p>
 
 {% if erreur %}
-    <p>
-        <strong>{{ erreur }}</strong>
-    </p>
+
+    <div class="erreur">
+        {{ erreur }}
+    </div>
+
 {% endif %}
 
     <form method="post">
 
         {% csrf_token %}
 
-        <button type="submit">
+        <button
+            type="submit"
+            class="bouton bouton-danger"
+        >
             Oui, supprimer
         </button>
 
     </form>
 
     <p>
-        <a href="{% url 'bibliothecaire:liste_membres' %}">
+        <a
+            href="{% url 'bibliothecaire:liste_membres' %}"
+            class="bouton bouton-secondaire"
+        >
             Annuler
         </a>
     </p>
